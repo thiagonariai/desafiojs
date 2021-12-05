@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 100%;
+    --fonte-padrao: helvetica, verdana, serif;
+    --background-menu-rodape: #212121;
+    --cor-padrao-fonte: white;
+}
+
+a {
+    text-decoration: none; /*remove o sublinhado do link*/
+    font-family: var(--fonte-padrao);
+    color: var(--cor-padrao-fonte);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0px 5px 0 5px;
+}
+
+a#home {
+    border-radius: 100px; /*aplica a borda arredondada*/
+    background-color: #F9A825;
+}
+
+a#contato:hover { /*efeito com fundo vermelho ao passar mouse*/
+    background-color: red;
+}
+
+header div#content-header {
+    width: 100%;
+    height: 40px; /*alura definida pelo desafio*/
+    background-color: var(--background-menu-rodape); /*cor definida pelo desafio*/
+    display: flex; /*alinha a logo e os menus um ao lado do outro*/
+    align-items: center; /*centraliza os itens na vertical*/
+  }
+
+#logo {
+    width: 50%;
+    text-align: center; /*centraliza o texto logo no cabeçalho*/
+    color: var(--cor-padrao-fonte);
+    font-size: 1.2rem;
+}
+
+nav {
+    width: 50%;
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    height:auto;
+}
+
+main div#box-main {
+    width: 40%;
+    height: auto;
+    margin: 100px auto; /*distância do header até a div box-main*/
+    display: flex; /*alinhou lado a lado as duas div estante*/
+}
+
+main div#box-main div.estante{  
+    width: 50%;
+    height: auto;
+    font-size: 1rem;
+    font-family: var(--fonte-padrao);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /*ajustar tela ao diminuir o tamanho do viweport*/
+}
+
+main div#box-main div.pontilhado {
+    border-right: 1px dotted black; /*aplica a borda pontilhada*/
+    height: 200px;
+}
+
+.txt { /*ajuste no tamanho do campo de inserção de email*/
+    width: 80%;
+}
+
+footer { /*alinhamento do rodapé*/
+    width: 100%;
+    height: 80px;
+    background-color: var(--background-menu-rodape);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /*posicionamento do rodapé para que fique na parte de baixo*/
+    bottom: 0;
+}
+
+footer div#rodape{
+    font-family: var(--fonte-padrao);
+    color: var(--cor-padrao-fonte);
+    font-size: 1.1rem;
+}
