@@ -1,82 +1,54 @@
-window.onload = function(){
+window.onload = function () {
 
-    //Array de produtos já definidos
     let frutas = [
-        {fruta: 'Limão', preco: 1.98},
-        {fruta: 'Manga', preco: 2.99},
-        {fruta: 'Banana Prata', preco: 3.50},
-        {fruta: 'Maçã Fujii', preco: 3.98},
-        {fruta: 'Melancia', preco: 1.29},
+        { nome: 'Limão', preco: 1.98 },
+        { nome: 'Manga', preco: 2.99 },
+        { nome: 'Banana Prata', preco: 6.50 },
+        { nome: 'Maçã Fujii', preco: 5.50 },
+        { nome: 'Melancia', preco: 2.29 },
     ];
 
-    //mapear os elementos
+
     let listaProdutos = document.querySelector("#produtos");
-    let listaProdutosCesta = document.querySelector("#cestaDoCliente")
+    let listaProdutosCesta = document.querySelector("#cestaDoCliente");
+    let totalCompra = document.getElementById('mostraTotalCompra');
 
-    //função que carrega as frutas juntamente com o HTML
-    function inserir(frutas){
-
-        //for of para percorrer o array produtos
-        for(let pro of frutas){
-
-            //criado dentro do for of p/ ter a mesma quantidade de elementos já definidos no array
+    //início da função para carregar as frutas
+    function inserir(frutas) {
+        for (let objeto of frutas) {
             let filhoLi = document.createElement('li');
-
-            //for in para percorrer as propriedades do array
-            for(listaP in pro){
-
-                if(listaP == 'preco'){//se a variável for igual a preço
-
-                    //adiciona o data attibutes preço no li do produto
-                    listaProdutos.appendChild(filhoLi).setAttribute('data-preco', pro[listaP]);
-                
+            for (let propriedade in objeto) {
+                if (propriedade == "nome") {
+                    listaProdutos.appendChild(filhoLi).textContent = `${objeto[propriedade]}`;
                 } else {
-
-                    //caso não seja preço, no caso aqui é o nome do produto, será adicionado no HTML
-                    listaProdutos.appendChild(filhoLi).textContent = `${pro[listaP]}`
-
-                }//fim do if/else
-            }//fim do for in
-
-        }//fim do for of
+                    listaProdutos.appendChild(filhoLi).setAttribute('data-PrecoFruta', `${objeto[propriedade]}`);
+                }
+            }
+        }
     }//fim da função inserir
+    inserir(frutas);
 
-    inserir(frutas);//chama a função inserir e passa como parâmetro o array das frutas
-
-    
-        
     //função para adicionar item a cesta
-    function addCesta(idAdd){
-           
-        const listaAdd = document.querySelectorAll(`#${idAdd} > li`)
-
-        for(let prod of listaAdd){
-
-            prod.addEventListener('click', function(){
-                let liCesta = document.createElement('li');
-                listaProdutosCesta.appendChild(liCesta).textContent = prod.innerHTML;
-                
-            })//fim do addEvent
-
-        }//fim do for of   
-    }//fim do addCesta
-
+    function addCesta(idAdd) {
+        const listaAdd = document.querySelectorAll(`#${idAdd} > li`);
+        let produtosAdicionados = [];
+        let soma = 0;
+        for (let produto of listaAdd) {
+            produto.addEventListener('click', function () {
+                if (!produtosAdicionados.includes(produto.innerHTML)) {
+                    produtosAdicionados.push(produto.innerHTML);
+                    let liCesta = document.createElement('li');
+                    listaProdutosCesta.appendChild(liCesta).textContent = produto.innerHTML;
+                    let valor = Number(produto.getAttribute('data-PrecoFruta'));
+                    soma += valor;
+                    totalCompra.value = soma;
+                } else {
+                    alert(`A fruta ${produto.innerHTML} já consta na sua cesta`);
+                }
+            }
+            )
+        }
+    }//fim da função addCesta
     addCesta('produtos');
-
-    //função para remover o item da lista
-    function remover(idDel){
-
-        const listaDel = document.querySelectorAll(`#${idDel} > li`)
-        for(let prodDel of listaDel){
-
-            prodDel.addEventListener('click', function(){
-                prodDel.remove();
-            })//fim do addEvent
-
-        }//fim do for of   
-
-    }//fim da função remover
-
-    remover('cestaDoCliente');   
 
 }//fim do window.onload
