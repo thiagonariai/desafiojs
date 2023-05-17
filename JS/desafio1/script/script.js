@@ -1,6 +1,6 @@
-import{inserir, addCesta} from './util.js'
+import { inserir, addCesta } from './util.js'
 
-window.onload = function(){
+window.onload = function () {
     let frutas = [
         { nome: 'Limão', preco: 1.98 },
         { nome: 'Manga', preco: 2.99 },
